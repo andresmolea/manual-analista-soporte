@@ -144,6 +144,7 @@
   .tag.cierre { background: var(--dark-chip); color: var(--dark-chip-ink); }
   .tag.pend { background: var(--warning-soft); color: var(--warning); }
   .tag.biblia { background: linear-gradient(135deg, var(--accent), var(--chip-fill)); color: #ffffff; }
+  .tag.bot { background: var(--dark-chip); color: var(--dark-chip-ink); }
   .empty { text-align: center; color: var(--ink-faint); padding: 40px 0; display: none; font-family: var(--font-display); font-weight: 600; }
   a { color: var(--accent); font-weight: 600; }
 </style>
@@ -159,6 +160,7 @@
   <div class="tabs" id="tabs">
     <button class="tab-btn active" data-group="inicio">Inicio</button>
     <button class="tab-btn" data-group="casos">Casos</button>
+    <button class="tab-btn" data-group="bot">Analista BOT</button>
     <button class="tab-btn" data-group="canales">Canales</button>
     <button class="tab-btn" data-group="herramientas">Herramientas</button>
   </div>
@@ -201,7 +203,7 @@ var sections = [
     vertical: "Rides",
     tag: "Caso",
     title: "Accidentes",
-    html: "<ol><li>Si sos un <strong>analista normal</strong> (no BOT) y el caso te llega por chat, reportalo por <strong>Live Ops Support</strong> indicando que en tal viaje hubo un accidente: incluí el ID del viaje y los datos que tengas (quién escribe, qué pasó, estado de las partes). Con eso tu parte termina; no le escribís vos a las partes del accidente.</li><li>El <strong>analista de BOT</strong> recibe ese reporte y toma el caso desde ahí: contacta a las partes, saca ambas versiones del suceso, y arma la planilla con el template completo.</li><li>Si te toca el rol de analista de BOT ese turno, publicás la planilla en <strong>#accidentes-liveops</strong>, etiquetando a los supervisores.</li><li>Escalás la misma planilla a <strong>#cxylegal</strong>, tageando a Eubrys Rojas con copia a Andrés Molea, María Gabriela Colina Vaamondes y María Medina.</li><li>Escalás al grupo de WhatsApp <strong>\"ESP + COORD LIVE OPS SUPPORT\"</strong>, tageando a María Medina ahí. Las fotos del accidente nunca se comparten por WhatsApp, solo por #cxylegal.</li><li>Publicás en <strong>#bloqueos-yummers-liveops</strong> pidiendo el bloqueo preventivo del conductor (motivo \"Experiencia al Driver\", tipo preventivo, descripción \"Validación de accidente en el servicio X\"); el supervisor carga el formulario.</li><li>Después del bloqueo, el caso pasa a <strong>Escuela</strong> para seguimiento.</li><li>Seguís manejando la conversación con el afectado hasta que el caso pase a Escuela.</li><li>El tema de la póliza o seguro lo maneja <strong>María Medina</strong>, no nosotros.</li></ol><p><strong>Template de la planilla:</strong></p><pre>Detalles del accidente\n\nTrip: [ID del viaje o N/A]\nDriver: [Central ID] - [Nombre completo]\nCI: [cédula]\nEmail: [correo]\nTeléfono: [teléfono]\nCiudad: [ciudad]\nVehículo / Datos del Vehículo: [marca, placa, modelo, color, clase, año]\n\nUsuario: [Central ID] - [Nombre]\nCI: [cédula]\nTeléfono: [teléfono]\nCorreo: [correo]\n\nFecha: [dd/mm/aaaa]\nHora: [hora aprox]\nCiudad: [ciudad]\nInterviene tránsito: Sí/No\nFecha en que llenó la planilla: [fecha o N/A]\n\nDetalles del Suceso: [narrativa de lo ocurrido]\n\nObservaciones: [estado de salud de ambas partes, si acudieron a centro médico]</pre>"
+    html: "<p>Si el caso te llega por chat, reportalo por <strong>Live Ops Support</strong> indicando que en tal viaje hubo un accidente: incluí el ID del viaje y los datos que tengas (quién escribe, qué pasó, estado de las partes). Con eso tu parte termina; no le escribís vos a las partes del accidente.</p><p>El manejo completo del caso (contactar a las partes, armar la planilla, escalar) lo hace quien tiene el rol de <strong>analista de BOT</strong> ese turno. Ver el detalle en la pestaña <strong>Analista BOT</strong>.</p>"
   },
   {
     group: "casos",
@@ -313,7 +315,7 @@ var sections = [
     vertical: "Rides",
     tag: "Caso",
     title: "SOS (botón de emergencia)",
-    html: "<p>El usuario tiene un botón de emergencia una vez el viaje está iniciado. Al presionarlo, llega una alerta automática a <strong>#sos-boton-rides</strong> con todos los datos del viaje, vehículo, usuario y conductor (incluyendo última ubicación).</p><p>Mensaje estándar: \"Buen día, te escribimos del chat de soporte técnico Yummy Rides, hemos recibido tu alerta de S.O.S, ¿Te encuentras en una situación de emergencia?\"</p><p>Lo ve normalmente el <strong>analista de BOT</strong>. Si es tu rol ese turno, asegurate de estar siempre pendiente del canal.</p>"
+    html: "<p>El usuario tiene un botón de emergencia una vez el viaje está iniciado. Al presionarlo, llega una alerta automática a <strong>#sos-boton-rides</strong> con todos los datos del viaje, vehículo, usuario y conductor (incluyendo última ubicación).</p><p>Esto lo maneja quien tiene el rol de <strong>analista de BOT</strong> ese turno. Ver el detalle en la pestaña <strong>Analista BOT</strong>.</p>"
   },
   {
     group: "casos",
@@ -348,10 +350,40 @@ var sections = [
     html: "<ol><li>En Rides, el correo y el teléfono se reportan directo al supervisor, quien lo cambia él mismo (no se pasa por #identidad-clientes para esos dos). Sigue aplicando la regla de que no puede haber dos perfiles con el mismo teléfono ni con el mismo correo.</li><li>La única excepción es la <strong>cédula</strong>: si el usuario ya está verificado (KYC), el dashboard no deja modificarla directo, así que ese caso puntual sí se escala por <strong>#identidad-clientes</strong>.</li><li>Para escalar la cédula: reportá en el canal <strong>#identidad-clientes</strong>, tageando al subequipo de Soporte TI, con los datos actuales del perfil y SIEMPRE una foto de la cédula del usuario como evidencia (sin eso no se puede aplicar el cambio): \"Me apoyan, por favor, corrigiendo la cédula de este user de Rides ya que está errada\" + los datos del perfil + \"Cédula correcta: [número]\".</li><li>El equipo confirma en el mismo hilo cuando el cambio quedó hecho (\"cambio procesado\" / \"cambio realizado\").</li></ol>"
   },
   {
-    group: "inicio",
+    group: "bot",
+    tag: "BOT",
+    title: "¿Qué es el analista de BOT?",
+    html: "<p>Es un rol que rota entre los analistas turno a turno, no es un analista fijo ni un puesto aparte. Mientras te toque, estas tareas se suman a tu trabajo normal de chat. Para no mezclar esta info con los casos de todos los días, acá quedan reunidas todas las funciones del rol en un solo lugar.</p>"
+  },
+  {
+    group: "bot",
+    tag: "BOT",
+    title: "Accidentes (manejo completo)",
+    html: "<ol><li>Recibís el reporte inicial: un analista normal te marca que en tal viaje hubo un accidente (por Live Ops Support, con el ID del viaje y los datos disponibles).</li><li>Contactás a las partes, sacás ambas versiones del suceso, y armás la planilla con el template completo.</li><li>Publicás la planilla en <strong>#accidentes-liveops</strong>, etiquetando a los supervisores.</li><li>Escalás la misma planilla a <strong>#cxylegal</strong>, tageando a Eubrys Rojas con copia a Andrés Molea, María Gabriela Colina Vaamondes y María Medina.</li><li>Escalás al grupo de WhatsApp <strong>\"ESP + COORD LIVE OPS SUPPORT\"</strong>, tageando a María Medina ahí. Las fotos del accidente nunca se comparten por WhatsApp, solo por #cxylegal.</li><li>Publicás en <strong>#bloqueos-yummers-liveops</strong> pidiendo el bloqueo preventivo del conductor (motivo \"Experiencia al Driver\", tipo preventivo, descripción \"Validación de accidente en el servicio X\"); el supervisor carga el formulario.</li><li>Después del bloqueo, el caso pasa a <strong>Escuela</strong> para seguimiento.</li><li>Seguís manejando la conversación con el afectado hasta que el caso pase a Escuela.</li><li>El tema de la póliza o seguro lo maneja <strong>María Medina</strong>, no nosotros.</li></ol><p><strong>Template de la planilla:</strong></p><pre>Detalles del accidente\n\nTrip: [ID del viaje o N/A]\nDriver: [Central ID] - [Nombre completo]\nCI: [cédula]\nEmail: [correo]\nTeléfono: [teléfono]\nCiudad: [ciudad]\nVehículo / Datos del Vehículo: [marca, placa, modelo, color, clase, año]\n\nUsuario: [Central ID] - [Nombre]\nCI: [cédula]\nTeléfono: [teléfono]\nCorreo: [correo]\n\nFecha: [dd/mm/aaaa]\nHora: [hora aprox]\nCiudad: [ciudad]\nInterviene tránsito: Sí/No\nFecha en que llenó la planilla: [fecha o N/A]\n\nDetalles del Suceso: [narrativa de lo ocurrido]\n\nObservaciones: [estado de salud de ambas partes, si acudieron a centro médico]</pre>"
+  },
+  {
+    group: "bot",
+    tag: "BOT",
+    title: "SOS (botón de emergencia)",
+    html: "<p>El usuario tiene un botón de emergencia una vez el viaje está iniciado. Al presionarlo, llega una alerta automática a <strong>#sos-boton-rides</strong> con todos los datos del viaje, vehículo, usuario y conductor (incluyendo última ubicación). Tenés que estar siempre pendiente de ese canal.</p><p>Mensaje estándar: \"Buen día, te escribimos del chat de soporte técnico Yummy Rides, hemos recibido tu alerta de S.O.S, ¿Te encuentras en una situación de emergencia?\"</p><p>Confirmás si es una emergencia real y actuás en consecuencia.</p>"
+  },
+  {
+    group: "bot",
+    tag: "BOT",
+    title: "Alertas de calificación baja (#bot-avenue-rides)",
+    html: "<p>Llegan alertas automáticas de calificación baja (manejo imprudente, situación irregular con el pago, conductor distinto al del app, falla mecánica, etc.) al canal <strong>#bot-avenue-rides</strong>. Las revisás vos: resolvés el problema, te disculpás con el usuario según corresponda, y le das feedback al driver si hace falta.</p>"
+  },
+  {
+    group: "bot",
+    tag: "BOT",
+    title: "Viajes agendados corporativos (#agendados_corporativos)",
+    html: "<p>Las solicitudes de viajes agendados de cuentas corporate llegan automático por un Typeform al canal <strong>#agendados_corporativos</strong>. Confirmás todo con el driver y el cliente, y seguís pendiente del caso hasta que se resuelva.</p>"
+  },
+  {
+    group: "bot",
     tag: "Cierre",
-    title: "Cierre de turno (si tenés el rol de analista de BOT)",
-    html: "<p>Lo arma quien está en el rol de analista de BOT ese turno (los supervisores agregan su propio cierre aparte). Se pasa por el grupo de WhatsApp <strong>\"ESP + COORD LIVE OPS SUPPORT\"</strong>.</p><pre>Cierre: TURNO [número] [fecha]\nAgentes convocados: [número]\nAsistentes: [número]\n\nMÉTRICAS:\nCola: [descripción]\nChat totales: [número]\nSatisfacción: [%]\nSatisfacción del mes: [%]\nTMO: [tiempo]\nTPR: [tiempo]\nSLA: [%]\n\nPRINCIPALES CONTACTOS:\n[etiqueta] [%]\n[etiqueta] [%]\n\nBOTS:\nAnalista: [nombre]\nBot: [número]\nAgendados: [número]\nSOS General: [número] sin emergencia real\nAccidentes: [número]\nBloqueo: [número]\nBlocking Alerts: [número]\n---------------------------------------\nPendiente para el otro turno:\nBot: [número]\nAgendados: [número]\n\nSATISFACCIÓN DEL EQUIPO:\n[nombre]: [%]</pre>"
+    title: "Cierre de turno",
+    html: "<p>Lo armás vos si tenés el rol ese turno (los supervisores agregan su propio cierre aparte). Se pasa por el grupo de WhatsApp <strong>\"ESP + COORD LIVE OPS SUPPORT\"</strong>.</p><pre>Cierre: TURNO [número] [fecha]\nAgentes convocados: [número]\nAsistentes: [número]\n\nMÉTRICAS:\nCola: [descripción]\nChat totales: [número]\nSatisfacción: [%]\nSatisfacción del mes: [%]\nTMO: [tiempo]\nTPR: [tiempo]\nSLA: [%]\n\nPRINCIPALES CONTACTOS:\n[etiqueta] [%]\n[etiqueta] [%]\n\nBOTS:\nAnalista: [nombre]\nBot: [número]\nAgendados: [número]\nSOS General: [número] sin emergencia real\nAccidentes: [número]\nBloqueo: [número]\nBlocking Alerts: [número]\n---------------------------------------\nPendiente para el otro turno:\nBot: [número]\nAgendados: [número]\n\nSATISFACCIÓN DEL EQUIPO:\n[nombre]: [%]</pre>"
   },
   {
     group: "canales",
@@ -393,6 +425,7 @@ sections.forEach(function (s) {
   else if (s.tag === 'Caso') tagClass += ' caso';
   else if (s.tag === 'Cierre') tagClass += ' cierre';
   else if (s.tag === 'Biblia') tagClass += ' biblia';
+  else if (s.tag === 'BOT') tagClass += ' bot';
   var vtagHtml = verts.map(function (v) { return '<span class="vtag ' + vertClass[v] + '">' + v + '</span>'; }).join('');
   var h2Class = verts.length === 1 ? ' class="' + vertClass[verts[0]] + '"' : '';
   div.innerHTML = '<span class="' + tagClass + '">' + s.tag + '</span>' + vtagHtml + '<h2' + h2Class + '>' + s.title + '</h2>' + s.html;
