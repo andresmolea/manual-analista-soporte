@@ -235,7 +235,7 @@ var sections = [
     vertical: "Avances",
     tag: "Caso",
     title: "Número de cuenta bancaria mal",
-    html: "<p>Se remite a finanzas por correo (atencionaldriver@yummysuperapp.com), pidiendo nombre, correo de registro, ciudad, evidencias, y la especificación de la solicitud. Tiempo de respuesta: 72 horas.</p>"
+    html: "<p>Se remite a finanzas por correo (atencionaldriver@yummysuperapp.com), pidiendo nombre, correo de registro, ciudad, evidencias, y la especificación de la solicitud.</p>"
   },
   {
     group: "casos",
@@ -315,7 +315,7 @@ var sections = [
     vertical: "TicketMundo",
     tag: "Caso",
     title: "TicketMundo",
-    html: "<p>Reporta directo en <strong>#team-ticketmundo</strong> (datos del cliente, evento, pago), con el formato de abajo. Nuestro rol acá termina en el reporte; el equipo de TicketMundo se encarga de resolverlo. Quienes llevan TicketMundo y a quienes se puede contactar: <strong>Paula Dalis</strong>, <strong>Simón Montilla</strong> y <strong>Luis Contreras</strong>.</p><p><strong>Formato del reporte (tomado de casos reales del canal):</strong></p><pre>- Nombre: [nombre completo]\n- Celular: [número]\n- Cédula: [cédula]\n- Correo: [correo]\n- Evento: [nombre del evento]\n- Fecha: [fecha del evento]\n- Cantidad de entradas: [número]\n- Sector: [sector/zona]\n\nDatos del pago:\n- Número celular asociado al banco/pago móvil: [número]\n- Número de cédula de identidad registrada en la entidad bancaria: [cédula]\n- Fecha del pago: [fecha]</pre><p>Se arma con los datos que da el cliente, junto con una frase de contexto (ej. \"Buen día equipo, user se contacta para la validación de su pago\").</p>"
+    html: "<p>Reporta directo en <strong>#team-ticketmundo</strong> (datos del cliente, evento, pago), con el formato de abajo. Nuestro rol acá termina en el reporte; el equipo de TicketMundo se encarga de resolverlo. Quienes llevan TicketMundo y a quienes se puede contactar: <strong>Paula Dalis</strong>, <strong>Simón Montilla</strong> y <strong>Luis Contreras</strong>.</p><p><strong>Formato del reporte (tomado de casos reales del canal):</strong></p><pre>- Nombre: \n- Celular: \n- Cédula: \n- Correo: \n- Evento: \n- Fecha: \n- Cantidad de entradas: \n- Sector: \n\nDatos del pago:\n- Número celular asociado al banco/pago móvil: \n- Número de cédula de identidad registrada en la entidad bancaria: \n- Fecha del pago: </pre><p>Se arma con los datos que da el cliente, junto con una frase de contexto (ej. \"Buen día equipo, user se contacta para la validación de su pago\").</p>"
   },
   {
     group: "casos",
@@ -331,7 +331,7 @@ var sections = [
     vertical: "Delivery",
     tag: "Caso",
     title: "Cambio de datos de Users (Delivery)",
-    html: "<ol><li>Reporta por <strong>Live Ops Support</strong> con los datos actuales del perfil (Central ID, Nombre, Teléfono, Correo) y SIEMPRE una foto de la cédula del usuario como evidencia; sin eso no se puede aplicar el cambio.</li><li><strong>Importante antes de reportar:</strong><ul><li>Para cambiar el <strong>correo</strong>: no debe existir ya otro perfil creado con ese correo. Si ya existe un perfil con ese correo, no hay vuelta atrás: no se puede hacer el cambio.</li><li>Para cambiar el <strong>teléfono</strong>: es al revés. Tiene que existir ya un perfil creado con ese número de teléfono para poder solicitar el cambio.</li></ul></li><li>El especialista es quien reporta en el canal <strong>#identidad-clientes</strong>, tageando al subequipo de Soporte TI (ej. \"Buenas tardes, equipo. User de Delivery desea colocar el correo electrónico / número de teléfono: [nuevo valor] en el perfil [Central ID] nos apoyan por favor.\"), y el equipo confirma en el mismo hilo cuando el cambio quedó hecho (\"cambio procesado\" / \"cambio realizado\").</li></ol>"
+    html: "<ol><li>Reporta por <strong>Live Ops Support</strong> con los datos actuales del perfil (Central ID, Nombre, Teléfono, Correo) y SIEMPRE una foto de la cédula del usuario como evidencia; sin eso no se puede aplicar el cambio. Al copiarlos desde el perfil de Delivery, estos datos salen uno debajo del otro, sin etiquetas, en este orden:<pre>[Central ID]\n[Nombre]\n[Teléfono]\n[Correo]</pre>Repórtalo tal cual sale.</li><li><strong>Importante antes de reportar:</strong><ul><li>Para cambiar el <strong>correo</strong>: no debe existir ya otro perfil creado con ese correo. Si ya existe un perfil con ese correo, no hay vuelta atrás: no se puede hacer el cambio.</li><li>Para cambiar el <strong>teléfono</strong>: es al revés. Tiene que existir ya un perfil creado con ese número de teléfono para poder solicitar el cambio.</li></ul></li><li>El especialista es quien reporta en el canal <strong>#identidad-clientes</strong>, tageando al subequipo de Soporte TI (ej. \"Buenas tardes, equipo. User de Delivery desea colocar el correo electrónico / número de teléfono: [nuevo valor] en el perfil [Central ID] nos apoyan por favor.\"), y el equipo confirma en el mismo hilo cuando el cambio quedó hecho (\"cambio procesado\" / \"cambio realizado\").</li></ol>"
   },
   {
     group: "casos",
@@ -375,7 +375,7 @@ var sections = [
     group: "bot",
     tag: "Cierre",
     title: "Cierre de turno",
-    html: "<p>Lo armas tú si tienes el rol ese turno (los especialistas agregan su propio cierre aparte). Se pasa por el grupo de WhatsApp <strong>\"ESP + COORD LIVE OPS SUPPORT\"</strong>.</p><pre>Cierre: TURNO [número] [fecha]\nAgentes convocados: [número]\nAsistentes: [número]\n\nMÉTRICAS:\nCola: [descripción]\nChat totales: [número]\nSatisfacción: [%]\nSatisfacción del mes: [%]\nTMO: [tiempo]\nTPR: [tiempo]\nSLA: [%]\n\nPRINCIPALES CONTACTOS:\n[etiqueta] [%]\n[etiqueta] [%]\n\nBOTS:\nAnalista: [nombre]\nBot: [número]\nAgendados: [número]\nSOS General: [número] sin emergencia real\nAccidentes: [número]\nBloqueo: [número]\nBlocking Alerts: [número]\n---------------------------------------\nPendiente para el otro turno:\nBot: [número]\nAgendados: [número]\n\nSATISFACCIÓN DEL EQUIPO:\n[nombre]: [%]</pre>"
+    html: "<p>Lo armas tú si tienes el rol ese turno (el resto del cierre general lo arma el especialista aparte). Se pasa por el grupo de WhatsApp <strong>\"ESP + COORD LIVE OPS SUPPORT\"</strong>.</p><pre>BOTS:\nAnalista: [nombre]\nBot: [número]\nAgendados: [número]\nSOS General: [número] sin emergencia real\nAccidentes: [número]\nBloqueo: [número]\nBlocking Alerts: [número]\n---------------------------------------\nPendiente para el otro turno:\nBot: [número]\nAgendados: [número]</pre>"
   },
   {
     group: "canales",
