@@ -203,7 +203,7 @@ var sections = [
     vertical: "Rides",
     tag: "Caso",
     title: "Accidentes",
-    html: "<p>Todo caso de accidente <strong>SIEMPRE se reporta</strong>: averigua lo que puedas directo con quien te escribe (qué pasó, estado de las partes), y pásalo por <strong>Live Ops Support</strong> etiquetando a los especialistas y a los analistas de BOT que tengan el turno, indicando que en tal viaje hubo un accidente, con el ID del viaje y todos los datos que hayas conseguido. Con eso tu parte termina: no tienes nada más que hacer, no le escribes tú a las partes del accidente.</p><p>El manejo completo del caso (contactar a las partes, armar la planilla, escalar) lo hace quien tiene el rol de <strong>analista de BOT</strong> ese turno.</p>"
+    html: "<p>Todo caso de accidente <strong>SIEMPRE se reporta</strong>: averigua lo que puedas directo con quien te escribe (qué pasó, estado de las partes), y pásalo por <strong>Live Ops Support</strong> etiquetando a los especialistas y a los analistas de BOT que tengan en el turno, indicando que en tal viaje hubo un accidente, con el ID del viaje y todos los datos que hayas conseguido. Con eso tu parte termina: no tienes nada más que hacer, no le escribes tú a las partes del accidente.</p><p>El manejo completo del caso (contactar a las partes, armar la planilla, escalar) lo hace quien tiene el rol de <strong>analista de BOT</strong> ese turno.</p>"
   },
   {
     group: "casos",
@@ -267,7 +267,7 @@ var sections = [
     vertical: "Rides",
     tag: "Caso",
     title: "Compensaciones Rides",
-    html: "<p>Mismo criterio que en Delivery: tú identificas si corresponde la compensación y la solicitas al especialista con los datos del cliente (nombre e iniciales, monto $2 o $3). El especialista la aprueba, salvo que considere que no aplica, y es quien carga el código en el dashboard de Rides y lo registra en el sheet de cupones.</p><ol><li>El código base ya existe según el monto (3YD = $3, 2YD = $2); se le agregan las iniciales del cliente al final para hacerlo único (ej. 3YDRA3).</li><li>El código final te lo pasa el especialista para que se lo entregues al cliente. El cliente debe colocarlo él mismo, no es preaplicado como en Delivery.</li></ol>"
+    html: "<p>Mismo criterio que en Delivery: tú identificas si corresponde la compensación y la solicitas al especialista con los datos del cliente. El cupón puede ser de $2 o de $3. El especialista la aprueba, salvo que considere que no aplica, y es quien carga el código en el dashboard de Rides y lo registra en el sheet de cupones.</p><ol><li>El código base ya existe según el monto; se le agregan las iniciales del cliente al final para hacerlo único (ej. 3YDRA3).</li><li>El código final te lo pasa el especialista para que se lo entregues al cliente. El cliente debe colocarlo él mismo, no es preaplicado como en Delivery.</li></ol>"
   },
   {
     group: "casos",
@@ -275,7 +275,7 @@ var sections = [
     vertical: "Rides",
     tag: "Caso",
     title: "Código Tattoo (activación o renovación)",
-    html: "<ol><li>El caso llega por Live Ops Support: el usuario pide activar o renovar su código Tattoo.</li><li>Con el dato que te dé (cédula, teléfono o correo), búscalo en el dashboard y completa ahí sus datos (Central ID, correo, nombre, apellido, cédula, teléfono, ciudad). Pídele también el código y una foto del código; eso sí lo manda el propio usuario, no lo armas tú.</li><li>Reporta todo eso al especialista. El especialista es quien escala en <strong>#codigos-rides-marketing</strong>, tageando a <strong>Melanie Álvarez</strong>, con el formato de abajo.</li><li>Melanie Álvarez activa o renueva el código.</li></ol><p><strong>Formato del mensaje (lo manda el especialista):</strong></p><pre>Buen día, por favor apoyo en la activación de este cupón tatto. @Melanie Álvarez\n\n[Central ID]    [correo]    [Nombre]    [Apellido]    [Cédula]    [Teléfono]\n[Ciudad]\n[Código]\n[Foto del código, adjunta]</pre><p>Si el usuario reclama que aún no le han activado el código de este mes, dile que ya se escaló y se espera respuesta, sin dar más detalle.</p>"
+    html: "<ol><li>El caso llega por chat: el usuario pide activar o renovar su código Tattoo.</li><li>Con el dato que te dé (cédula, teléfono o correo), búscalo en el dashboard y completa ahí sus datos (Central ID, correo, nombre, apellido, cédula, teléfono, ciudad). Pídele también el código y una foto del código; eso sí lo manda el propio usuario, no lo armas tú.</li><li>Reporta todo eso por <strong>Live Ops Support</strong>. El especialista es quien escala en <strong>#codigos-rides-marketing</strong>, tageando a <strong>Melanie Álvarez</strong>, con el formato de abajo.</li><li>Melanie Álvarez activa o renueva el código.</li></ol><p><strong>Formato para reportar:</strong></p><pre>[Central ID]    [correo]    [Nombre]    [Apellido]    [Cédula]    [Teléfono]\n[Ciudad]\n[Código]\n[Foto del código, adjunta]</pre><p>Si el usuario reclama que aún no le han activado el código de este mes, dile que ya se escaló y se espera respuesta, sin dar más detalle.</p>"
   },
   {
     group: "casos",
@@ -283,7 +283,7 @@ var sections = [
     vertical: ["Rides", "Delivery"],
     tag: "Caso",
     title: "Pagos (validar pago móvil / débito inmediato)",
-    html: "<p>Se valida con la herramienta <strong>Pagos V2</strong> (<a href=\"https://pagosv2.yummysuperapp.com/\" target=\"_blank\">pagosv2.yummysuperapp.com</a>), que permite filtrar por monto y otros datos para confirmar si un pago fue recibido. También permite ver pagos por <strong>Binance</strong>.</p><ul><li><strong>Pago móvil:</strong> se filtra por el monto y el número de teléfono asociado al pago.</li><li><strong>Débito inmediato:</strong> se filtra por el monto y el nombre del titular de la cuenta desde donde se realizó el pago.</li><li><strong>Binance:</strong> se filtra por el monto en dólares.</li></ul><p>Como analista solo ves los pagos del día y el día anterior, nada más. Si lo encuentras ahí, resuelves directo. Si no aparece, antes de descartarlo puedes preguntar por <strong>Live Ops Support</strong> para asegurarte. Si el pago es de antes de ayer, ya no lo puedes ver tú: pregúntale al especialista, que sí tiene visibilidad completa. Si el especialista tampoco lo encuentra y el cliente insiste con evidencia, eso ya lo escala el especialista directo con Finanzas; de tu lado el caso termina en reportárselo.</p>"
+    html: "<p>Se valida con la herramienta <strong>Pagos V2</strong> (<a href=\"https://pagosv2.yummysuperapp.com/\" target=\"_blank\">pagosv2.yummysuperapp.com</a>), que permite filtrar por monto y otros datos para confirmar si un pago fue recibido. También permite ver pagos por <strong>Binance</strong>.</p><ul><li><strong>Pago móvil:</strong> se filtra por el monto y el número de teléfono asociado al pago.</li><li><strong>Débito inmediato:</strong> se filtra por el monto y el nombre del titular de la cuenta desde donde se realizó el pago.</li><li><strong>Binance:</strong> se filtra por el monto en dólares, y se valida con el nombre del titular de la cuenta de Binance.</li></ul><p>Como analista solo ves los pagos del día y el día anterior, nada más. Si lo encuentras ahí, resuelves directo. Si no aparece, antes de descartarlo puedes preguntar por <strong>Live Ops Support</strong> para asegurarte. Si el pago es de antes de ayer, ya no lo puedes ver tú: pregúntale al especialista, que sí tiene visibilidad completa. Si el especialista tampoco lo encuentra y el cliente insiste con evidencia, eso ya lo escala el especialista directo con Finanzas; de tu lado el caso termina en reportárselo.</p>"
   },
   {
     group: "casos",
@@ -299,7 +299,7 @@ var sections = [
     vertical: ["Rides", "Delivery"],
     tag: "Caso",
     title: "Prime (suscripción)",
-    html: "<ol><li>Remite el pago a <strong>Planning</strong> para verificar si el cobro fue efectivo.</li><li>Si el cobro fue efectivo (se cobró pero no se aplicó el beneficio), pídele al usuario un video demostrando que no le aplicó el Prime.</li><li>Escala por <strong>Live Ops Support</strong> con el video como evidencia. El especialista es quien lo pasa a <strong>#team-yummy-rides</strong> o <strong>#team-delivery</strong> según la vertical.</li></ol>"
+    html: "<ol><li>Reporta el pago a <strong>Planning</strong> para que lo verifiquen.</li><li>Dile al usuario que se contacte más tarde: la respuesta de Planning no es inmediata.</li><li>Cuando Planning responda (en el mismo hilo) y el usuario vuelva a escribir:<ul><li>Si el cobro fue efectivo (se cobró pero no se aplicó el beneficio), pídele al usuario un video demostrando que no le aplicó el Prime, y repórtalo por el mismo hilo para que escalen y revisen por qué no se activó.</li><li>Si el cobro no fue efectivo, dile al usuario que debe validar con su banco.</li></ul></li></ol>"
   },
   {
     group: "casos",
