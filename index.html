@@ -187,7 +187,7 @@ var sections = [
     group: "inicio",
     tag: "Biblia",
     title: "La Biblia del Analista",
-    html: "<p>Estas son las reglas base: aplican a cualquier caso, sin importar el motivo.</p><ul><li>El rol del analista es identificar el caso, recopilar los datos necesarios, y reportarlo al grupo o canal correspondiente para que el especialista o el equipo responsable actúe. No se resuelve por cuenta propia lo que le corresponde decidir a otro equipo.</li><li>Todo bloqueo, sin importar el motivo, se reporta al especialista (con ID, nombre y motivo) para que cargue el formulario de bloqueo correspondiente.</li><li>Toda orden ACTIVA (en curso, aún no marcada como entregada) es responsabilidad de Monitor, no nuestra.</li><li>Toda orden YA marcada como entregada es nuestra (no de Monitor), sin importar el motivo por el que escriban, no solo cuando el cliente dice que no la recibió. Por ejemplo, también aplica cuando un Yummer escribe por una orden que devolvió al comercio y le quedó la deuda.</li><li>No se cierra ninguna conversación sin haber ofrecido un camino concreto: escalación, reporte al grupo correspondiente, o confirmación del proceso a seguir.</li><li>Siempre filtrar por ID, correo u otro dato <strong>en Slack</strong> (búsqueda del canal o del workspace) antes de reportar, para verificar que no exista ya un reporte previo del mismo caso. Aplica a todos los casos en general, no solo a los documentados acá.</li><li>El canal <strong>#live-ops-support</strong> (cola general de Rides + Delivery) tiene un SLA de 3 minutos de respuesta.</li></ul>"
+    html: "<p>Estas son las reglas base: aplican a cualquier caso, sin importar el motivo.</p><ul><li>El rol del analista es identificar el caso, recopilar los datos necesarios, y reportarlo al grupo o canal correspondiente para que el especialista o el equipo responsable actúe. No se resuelve por cuenta propia lo que le corresponde decidir a otro equipo.</li><li>Todo bloqueo, sin importar el motivo, se reporta al especialista (con ID, nombre y motivo) para que cargue el formulario de bloqueo correspondiente.</li><li>Toda orden ACTIVA (en curso, aún no marcada como entregada) es responsabilidad de Monitor, no nuestra.</li><li>Toda orden YA marcada como entregada es nuestra (no de Monitor), sin importar el motivo por el que escriban, no solo cuando el cliente dice que no la recibió. Por ejemplo, también aplica cuando un Yummer escribe por una orden que devolvió al comercio y le quedó la deuda.</li><li>No se cierra ninguna conversación sin haber ofrecido un camino concreto: escalación, reporte al grupo correspondiente, o confirmación del proceso a seguir.</li><li>Siempre filtrar por ID, correo u otro dato <strong>en Slack</strong> (búsqueda del canal o del workspace) antes de reportar, para verificar que no exista ya un reporte previo del mismo caso. Aplica a todos los casos en general, no solo a los documentados acá.</li><li>El canal <strong>#live-ops-support</strong> (cola general de Rides + Delivery) tiene un SLA de 3 minutos de respuesta.</li><li>Siempre que escribas a un canal de Slack de otro departamento, habla con educación: usa "gracias" y "por favor".</li></ul>"
   },
   {
     group: "casos",
@@ -342,6 +342,70 @@ var sections = [
     html: "<ol><li>En Rides, el correo y el teléfono se reportan por <strong>Live Ops Support</strong>; el especialista lo cambia él mismo directo en el dashboard (no se pasa por #identidad-clientes para esos dos). Sigue aplicando la regla de que no puede haber dos perfiles con el mismo teléfono ni con el mismo correo.</li><li>La única excepción es la <strong>cédula</strong>: si el usuario ya está verificado (KYC), el dashboard no deja modificarla directo, así que ese caso puntual sí se escala por <strong>#identidad-clientes</strong>, pero eso lo hace el especialista, no tú.</li><li>Para ese caso, reporta por Live Ops Support los datos actuales del perfil, la cédula correcta, y SIEMPRE una foto de la cédula del usuario como evidencia (sin eso no se puede aplicar el cambio). El especialista es quien publica en #identidad-clientes (ej. \"Me apoyan, por favor, corrigiendo la cédula de este user de Rides ya que está errada\" + los datos del perfil + \"Cédula correcta: [número]\").</li><li>El equipo confirma en el mismo hilo cuando el cambio quedó hecho (\"cambio procesado\" / \"cambio realizado\").</li></ol>"
   },
   {
+    group: "casos",
+    section: "Accesos",
+    vertical: "Rides",
+    tag: "Caso",
+    title: "Clear Device (restricción por nuevo dispositivo)",
+    html: "<p>El conductor no puede ingresar a la app porque quedó restringido al intentar abrirla en un nuevo dispositivo (la app solo permite un teléfono conectado a la vez, para evitar alquiler de perfil y casos similares).</p><ol><li>Manda la macro <strong>#Clear_Device_Datos</strong> pidiéndole los datos.</li><li>Cuando el conductor te envíe todo, búscalo en <strong>Audit</strong> en el dashboard para ver si tiene un clear muy reciente.</li><li>Repórtalo por <strong>#escalamientos-central-rides</strong> con todo lo que te envió, y pregúntale a los especialistas de turno si procede o no.</li><li>Si te dicen que sí procede, aplicas el clear y mandas la macro <strong>#Clear_Devices_aprobado</strong>.</li><li>Si te dicen que no procede, mandas la macro <strong>#Clear_No_Aplica</strong>.</li></ol><p><strong>#Clear_Device_Datos:</strong></p><pre>Hola, para procesar tu solicitud de acceso, es necesario validar la titularidad de tu cuenta por motivos de seguridad.\nPor favor, envíanos los siguientes datos en un solo mensaje:\nMotivo del cambio:\nModelo del dispositivo anterior:\nModelo del dispositivo actual:\nCaptura de pantalla del mensaje de restricción.\nFoto tipo 'selfie' sosteniendo tu cédula de identidad en mano (asegúrate de que tu rostro y los datos del documento sean legibles).\nUna vez recibida la información completa, procederemos con la evaluación de tu caso.</pre><p><strong>#Clear_Devices_aprobado:</strong></p><pre>Queremos informarte que se ha desactivado permanentemente la opción de anular restricciones por:\nCambio de dispositivo.\nReseteo de equipo.\nReinstalación de la app.\nPor única vez y de forma excepcional, hemos habilitado tu último acceso disponible. A partir de ahora, si recibes una nueva restricción, deberás esperar obligatoriamente el tiempo que la aplicación te indique, ya que no podremos intervenir manualmente.\nTe invitamos a evitar estas acciones para no afectar tu jornada de trabajo.</pre><p><strong>#Clear_No_Aplica:</strong></p><pre>Tras revisar tu historial, confirmamos que ya recibiste un apoyo excepcional previo. Como se te informó, no es posible realizar nuevas anulaciones manuales.\nDebes esperar el tiempo que la aplicación te indica en pantalla.\nAdvertencia: El abuso de estas solicitudes puede ocasionar la suspensión de tu perfil. Te invitamos a cumplir el ciclo de espera automático para recuperar tu acceso.</pre>"
+  },
+  {
+    group: "casos",
+    section: "Validaciones",
+    vertical: "Rides",
+    tag: "Caso",
+    title: "Casos de llamadas (pertenencias extraviadas / viaje no realizado)",
+    html: "<p>Tu trabajo acá es reportar, tal cual lo que te indica el cliente o el conductor, por el canal <strong>#validacionesllamadasliveops</strong>. Los tipos más comunes:</p><ul><li><strong>Pertenencias extraviadas:</strong> el cliente o el driver indica que se quedó algo en el vehículo (llaves, carteras, celulares, etc.). Repórtalo con la experiencia que te cuentan en el chat, y pídele autorización al <strong>cliente</strong> para darle su número al conductor, en caso de que aplique.</li><li><strong>Viaje completado pero no se realizó:</strong> repórtalo con los datos del viaje.</li><li><strong>Otros (ej. vuelto errado):</strong> reporta exactamente lo que te está indicando el cliente o el conductor, sin interpretar ni resumir de más.</li></ul><p><strong>Formato para reportar:</strong></p><pre>[ID del viaje]\n[Central ID] - [Nombre del user]\n[Central ID] - [Nombre del driver]\t[Ciudad]\t[Categoría]\n[Descripción del caso, tal cual te la cuentan]\n[Si el cliente autoriza o no dar su número al conductor]</pre><p>Si el cliente autoriza, se comparte su número con el conductor para que coordinen directo (ej. la devolución del objeto). Si no autoriza, se deja igual el reporte.</p>"
+  },
+  {
+    group: "casos",
+    section: "Validaciones",
+    vertical: "Rides",
+    tag: "Caso",
+    title: "Incidencias (ajustes de saldo a user/driver)",
+    html: "<p>Cuando hay una diferencia de dinero que hay que corregir en la billetera del cliente o del driver, se registra en el <a href=\"https://docs.google.com/spreadsheets/d/18ZefV4gAixPM8MXaOsxD-aRozVl7DxG7DLWzxvZEjlE/edit?gid=2054200952#gid=2054200952\" target=\"_blank\"><strong>Registro de Incidencias Rides</strong></a>, con el ID del viaje, los datos de cliente y driver, la ciudad, el tipo de servicio, el detalle de la incidencia, el detalle del caso, y el monto a acreditar o debitar a cada uno.</p><p><strong>Motivos más comunes:</strong> cargo duplicado, driver finaliza el viaje sin el user, vuelto errado en efectivo, driver cancela luego de recibir el pago, user no corresponde al kilometraje, acreditación errada, deuda a user.</p><p><strong>Caso de vuelto errado:</strong> el cliente indica que va a pagar con un billete que requiere vuelto (ej. $10), pero después paga por pago móvil el monto exacto del viaje, o paga con otro billete distinto. Como el conductor completa el servicio según lo que el cliente indicó al inicio, el sistema le resta el supuesto vuelto al driver y se lo suma al cliente en su wallet, cuando en realidad no le correspondía. Por eso se bloquea preventivamente al cliente mientras se investiga el caso y se hacen las validaciones y ajustes correspondientes.</p>"
+  },
+  {
+    group: "casos",
+    section: "Validaciones",
+    vertical: "Rides",
+    tag: "Caso",
+    title: "Driver bloqueado, no recibió el correo de feedback",
+    html: "<p>Si un conductor se contacta indicando que está bloqueado y que no le han enviado el correo de feedback (donde se explica el motivo del bloqueo), nunca le des tú el motivo de bloqueo. Eso lo maneja <strong>Escuela</strong>, por correo.</p><p>Si te dice que no ha recibido ese correo, escala a Escuela con los datos del driver, solicitando por favor que escalen el caso.</p>"
+  },
+  {
+    group: "casos",
+    section: "Validaciones",
+    vertical: ["Rides", "Delivery"],
+    tag: "Caso",
+    title: "Yummy Club (problemas de verificación)",
+    html: "<p>Cuando el cliente o el driver presenta algún problema para verificarse en <strong>Yummy Club</strong> (necesario para beneficios como Cashea, Marketplace, etc.), repórtalo por <strong>#validaciones-yummy-club</strong> con sus datos (Central ID, correo, nombre, apellido, cédula, teléfono) y SIEMPRE una foto de la cédula, ajuro.</p>"
+  },
+  {
+    group: "casos",
+    section: "Validaciones",
+    vertical: "Rides",
+    tag: "Caso",
+    title: "Reporte de malas actitudes o algún inconveniente",
+    html: "<p>Cuando el cliente o el conductor reporta una mala actitud (grosería, manejo imprudente, acoso, falta de respeto, etc.) o algún inconveniente similar durante el servicio, repórtalo por <strong>#escalamientos-central-rides</strong>, etiquetando al analista de BOT y a los especialistas de turno.</p><p><strong>Formato para reportar:</strong></p><pre>[ID del viaje]\n[Central ID] - [Nombre del user]\n[Central ID] - [Nombre del driver]\t[Ciudad]\t[Categoría]\t[Fecha/hora inicio]\t[Fecha/hora fin]\n[Descripción de lo que indica el cliente o el conductor, tal cual te lo cuentan]</pre>"
+  },
+  {
+    group: "casos",
+    section: "Accesos",
+    vertical: "Rides",
+    tag: "Caso",
+    title: "Completar / Cancelar servicios",
+    html: "<p>Busca el número de viaje en <strong>Running Requests</strong> (en el dashboard). Desde ahí puedes completar o cancelar el servicio, según el estado en el que esté (si todavía no tiene conductor asignado, por ejemplo en \"Waiting\", solo aparece la opción de cancelar, no de completar).</p><p><strong>No se cancelan:</strong></p><ul><li>Servicios <strong>B2B</strong>.</li><li>Órdenes de <strong>Delivery</strong>.</li></ul><p><strong>Mandaditos:</strong> solo se completa o cancela si se valida y comprueba la entrega (o lo que corresponda comprobar en cada caso).</p><p>El resto (viajes normales de Rides) sí se pueden completar o cancelar directamente.</p>"
+  },
+  {
+    group: "casos",
+    section: "Accesos",
+    vertical: "Rides",
+    tag: "Caso",
+    title: "Make Available (perfil bugueado)",
+    html: "<p>Cuando el conductor tiene su perfil bugueado (atascado, no se comporta normal en el sistema), se aplica desde el perfil del conductor en el dashboard, en el menú de opciones: <strong>Make Available</strong>.</p>"
+  },
+  {
     group: "bot",
     tag: "BOT",
     title: "¿Qué es el analista de BOT?",
@@ -363,7 +427,19 @@ var sections = [
     group: "bot",
     tag: "BOT",
     title: "Alertas de calificación baja (#bot-avenue-rides)",
-    html: "<p>Llegan alertas automáticas de calificación baja (manejo imprudente, situación irregular con el pago, conductor distinto al del app, falla mecánica, etc.) al canal <strong>#bot-avenue-rides</strong>. Las revisas tú: resuelves el problema, te disculpas con el usuario según corresponda, y le das feedback al driver si hace falta. Quedan registradas en el <a href=\"https://docs.google.com/spreadsheets/d/1cVeVxzPAttair-IgObIYbXwsfdmvsD5XtwEky4Cvveo/edit\" target=\"_blank\"><strong>Sheet: registro de bots</strong></a>.</p>"
+    html: "<p>Llegan alertas automáticas de calificación baja (manejo imprudente, situación irregular con el pago, conductor distinto al del app, falla mecánica, etc.) al canal <strong>#bot-avenue-rides</strong>. Solo validas los casos que tengan <strong>1 estrella</strong>. Las revisas tú: resuelves el problema, te disculpas con el usuario según corresponda, y le das feedback al driver si hace falta. Quedan registradas en el <a href=\"https://docs.google.com/spreadsheets/d/1cVeVxzPAttair-IgObIYbXwsfdmvsD5XtwEky4Cvveo/edit\" target=\"_blank\"><strong>Sheet: registro de bots</strong></a>.</p>"
+  },
+  {
+    group: "bot",
+    tag: "BOT",
+    title: "Gestión de reportes por mala actitud, manejo imprudente, acoso",
+    html: "<p>Es el mismo caso de <strong>Reporte de malas actitudes o algún inconveniente</strong> (pestaña Casos, vertical Rides), pero del lado de quien lo recibe: cuando tienes el rol de analista de BOT, eres quien recibe estos reportes por <strong>#escalamientos-central-rides</strong> y los gestiona (investiga el caso y decide qué procede).</p>"
+  },
+  {
+    group: "bot",
+    tag: "BOT",
+    title: "Validación de Blocking Alerts (#driver-blocking-alerts)",
+    html: "<p>El sistema bloquea automáticamente a conductores por reseñas de los usuarios (ej. \"Vehículo distinto al que sale en el app\", \"Conductor con manejo imprudente\", \"Situación irregular con el pago\", \"Casco con observaciones\", etc.), con una duración de 2 horas o indefinida según la gravedad. Llega como alerta automática al canal <strong>#driver-blocking-alerts</strong>, con el ID y nombre del conductor, el motivo, la duración, y los viajes/reseñas que lo generaron.</p><ol><li>Contacta a los usuarios que dejaron las reseñas que generaron el bloqueo, para confirmar qué pasó realmente.</li><li>Si el usuario no responde, se deja constancia como \"sin respuesta\".</li><li>Reporta en el mismo hilo de la alerta lo que confirmaste (si el bloqueo es legítimo, o si fue un error, por ejemplo un glitch de la app que mostró otro perfil).</li></ol>"
   },
   {
     group: "bot",
@@ -381,7 +457,7 @@ var sections = [
     group: "canales",
     tag: "Canales",
     title: "Canales de Slack",
-    html: "<table><tr><th>Canal</th><th>Qué se reporta</th><th>Qué hacemos</th></tr><tr><td>#live-ops-support</td><td>Cola general en vivo de soporte (Rides + Delivery). SLA de 3 minutos de respuesta.</td><td>Responder directo según el requerimiento, o reportar al grupo correspondiente si no se resuelve en el chat.</td></tr><tr><td>#accidentes-liveops</td><td>Planilla completa del accidente.</td><td>El analista de BOT la arma y la publica ahí, etiquetando a los especialistas.</td></tr><tr><td>#validacionesllamadasliveops</td><td>Casos en disputa sobre si el servicio se realizó (versión del user vs. del driver) y pertenencias extraviadas, mayormente.</td><td>Reportar el caso para que se contacte (llamada o mensaje) al user o al driver y se valide la versión.</td></tr><tr><td>#escalamientos-central-rides</td><td>Mayormente bloqueos de usuario, clear devices y casos similares. También seguridad (sospecha de secuestro, trato inapropiado del conductor) y otros escalamientos variados de Rides.</td><td>Reportar el caso para que el especialista decida: feedback al analista de BOT, bloqueo, investigación, etc.</td></tr><tr><td>#bloqueos-yummers-liveops</td><td>Solicitud de bloqueo de conductores.</td><td>Reportar con el motivo correspondiente; el especialista carga el formulario de bloqueo.</td></tr><tr><td>#bot-avenue-rides</td><td>Alertas automáticas de calificación baja (manejo imprudente, situación irregular con el pago, conductor distinto al del app, falla mecánica, etc.).</td><td>Lo revisa el analista de BOT: resuelve el problema, se disculpa con el usuario según corresponda, y le da feedback al driver si hace falta.</td></tr><tr><td>#agendados_corporativos</td><td>Solicitudes de viajes agendados de cuentas corporate (llegan automático por un Typeform).</td><td>El analista de BOT confirma todo con el driver y el cliente, y sigue pendiente del caso hasta que se resuelva.</td></tr><tr><td>#sos-boton-rides</td><td>Alertas del botón SOS.</td><td>El analista de BOT confirma si es una emergencia real.</td></tr></table>"
+    html: "<table><tr><th>Canal</th><th>Qué se reporta</th><th>Qué hacemos</th></tr><tr><td>#live-ops-support</td><td>Cola general en vivo de soporte (Rides + Delivery). SLA de 3 minutos de respuesta.</td><td>Responder directo según el requerimiento, o reportar al grupo correspondiente si no se resuelve en el chat.</td></tr><tr><td>#accidentes-liveops</td><td>Planilla completa del accidente.</td><td>El analista de BOT la arma y la publica ahí, etiquetando a los especialistas.</td></tr><tr><td>#validacionesllamadasliveops</td><td>Casos en disputa sobre si el servicio se realizó (versión del user vs. del driver) y pertenencias extraviadas, mayormente.</td><td>Reportar el caso para que se contacte (llamada o mensaje) al user o al driver y se valide la versión.</td></tr><tr><td>#escalamientos-central-rides</td><td>Mayormente bloqueos de usuario, clear devices y casos similares. También seguridad (sospecha de secuestro, trato inapropiado del conductor) y otros escalamientos variados de Rides.</td><td>Reportar el caso para que el especialista decida: feedback al analista de BOT, bloqueo, investigación, etc.</td></tr><tr><td>#bloqueos-yummers-liveops</td><td>Solicitud de bloqueo de conductores.</td><td>Reportar con el motivo correspondiente; el especialista carga el formulario de bloqueo.</td></tr><tr><td>#bot-avenue-rides</td><td>Alertas automáticas de calificación baja (manejo imprudente, situación irregular con el pago, conductor distinto al del app, falla mecánica, etc.).</td><td>Lo revisa el analista de BOT: resuelve el problema, se disculpa con el usuario según corresponda, y le da feedback al driver si hace falta.</td></tr><tr><td>#agendados_corporativos</td><td>Solicitudes de viajes agendados de cuentas corporate (llegan automático por un Typeform).</td><td>El analista de BOT confirma todo con el driver y el cliente, y sigue pendiente del caso hasta que se resuelva.</td></tr><tr><td>#validaciones-yummy-club</td><td>Problemas de verificación en Yummy Club (necesario para Cashea, Marketplace, etc.).</td><td>Reportar con los datos del user o driver y SIEMPRE una foto de la cédula.</td></tr><tr><td>#driver-blocking-alerts</td><td>Alertas automáticas de bloqueo de conductor por reseñas de los usuarios.</td><td>El analista de BOT contacta a los users que dejaron las reseñas para confirmar qué pasó, y reporta en el mismo hilo.</td></tr><tr><td>#sos-boton-rides</td><td>Alertas del botón SOS.</td><td>El analista de BOT confirma si es una emergencia real.</td></tr></table>"
   },
   {
     group: "herramientas",
