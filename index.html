@@ -343,6 +343,14 @@ var sections = [
   },
   {
     group: "casos",
+    section: "Otros",
+    vertical: "TicketMundo",
+    tag: "Caso",
+    title: "Cliente quiere vender sus entradas con TicketMundo",
+    html: "<p>Cuando un cliente (organizador de un evento) quiere que <strong>TicketMundo</strong> le venda las entradas de su evento, eso NO se gestiona por nuestro lado: se le indica que escriba directamente a <strong>atencionalcliente@ticketmundo.com</strong> exponiendo el detalle del evento (qué es, fecha, lugar, etc.) para que el equipo de TicketMundo lo evalúe y le dé seguimiento.</p>"
+  },
+  {
+    group: "casos",
     section: "Cambio de datos",
     vertical: "Delivery",
     tag: "Caso",
@@ -431,7 +439,7 @@ var sections = [
     group: "bot",
     tag: "BOT",
     title: "Accidentes (manejo completo)",
-    html: "<ol><li>Recibes el reporte inicial: un analista normal te marca (a ti y a los especialistas) que en tal viaje hubo un accidente, por Live Ops Support, con el ID del viaje y los datos disponibles.</li><li>Contactas a las partes, sacas ambas versiones del suceso, y armas la planilla con el template completo.</li><li>Publicas la planilla en <strong>#accidentes-liveops</strong>, etiquetando a los especialistas.</li><li>Publicas en <strong>#bloqueos-yummers-liveops</strong> pidiendo el bloqueo preventivo del conductor (motivo \"Experiencia al Driver\", tipo preventivo, descripción \"Validación de accidente en el servicio X\"); el especialista carga el formulario.</li><li>Después del bloqueo, el caso pasa a <strong>Escuela</strong> para seguimiento.</li><li>Sigues manejando la conversación con el afectado hasta que el caso pase a Escuela.</li><li>El tema de la póliza o seguro lo maneja <strong>María Medina</strong>, no nosotros.</li></ol><p><strong>Template de la planilla (actualizado):</strong></p><pre>REPORTE DE ACCIDENTE DE TRÁNSITO\n\nID del Trip: \nFecha y Hora: DD/MM/AAAA - 00:00 AM/PM\nCiudad: \nIntervención de Tránsito / Autoridades: [Sí / No / En proceso]\n\nDATOS DEL CONDUCTOR (DRIVER)\nNombre Completo: \nCédula / ID Identificación: \nTeléfono de Contacto: \nCorreo Electrónico: \nDatos del Vehículo: [Marca / Modelo / Año / Color / Placa]\n\nDATOS DEL PASAJERO / USUARIO (USER)\nNombre Completo: \nCédula: \nTeléfono de Contacto: \nCorreo Electrónico: \n\nDESCRIPCIÓN DE LOS HECHOS: </pre>"
+    html: "<ol><li>Recibes el reporte inicial: un analista normal te marca (a ti y a los especialistas) que en tal viaje hubo un accidente, por Live Ops Support, con el ID del viaje y los datos disponibles.</li><li>Contactas a las partes, sacas ambas versiones del suceso, y armas la planilla con el template completo.</li><li>Publicas la planilla en <strong>#accidentes-liveops</strong>, etiquetando a los especialistas.</li><li>Publicas en <strong>#bloqueos-yummers-liveops</strong> pidiendo el bloqueo preventivo del conductor (motivo \"Experiencia al Driver\", tipo preventivo, descripción \"Validación de accidente en el servicio X\"); el especialista carga el formulario.</li><li>Después del bloqueo, el caso pasa a <strong>Escuela</strong> para seguimiento.</li><li>Sigues manejando la conversación con el afectado hasta que el caso pase a Escuela.</li><li>El tema de la póliza o seguro lo maneja <strong>María Medina</strong>, no nosotros.</li></ol><p><strong>Template de la planilla (actualizado):</strong></p><pre>REPORTE DE ACCIDENTE DE TRÁNSITO\n\nID del Trip: \nFecha y Hora: DD/MM/AAAA - 00:00 AM/PM\nCiudad: \nIntervención de Tránsito / Autoridades: [Sí / No / En proceso]\n\nDATOS DEL CONDUCTOR (DRIVER)\nNombre Completo: \nCédula / ID Identificación: \nTeléfono de Contacto: \nCorreo Electrónico: \nDatos del Vehículo: [Marca / Modelo / Año / Color / Placa]\n\nDATOS DEL PASAJERO / USUARIO (USER)\nNombre Completo: \nCédula: \nTeléfono de Contacto: \nCorreo Electrónico: \n\nDESCRIPCIÓN DE LOS HECHOS: </pre><p><strong>Al llenar la descripción:</strong> no repitas la fecha (ya va arriba, en \"Fecha y Hora\"), no armes una sección aparte de \"versión exclusiva del conductor\" (todo va en una sola descripción), y no incluyas daños materiales del vehículo (eso no lo cubrimos).</p>"
   },
   {
     group: "bot",
