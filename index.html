@@ -386,6 +386,14 @@ var sections = [
     section: "Validaciones",
     vertical: "Rides",
     tag: "Caso",
+    title: "Vuelto errado (3202YR) - conductor indica que el cliente pagó el monto exacto, no en efectivo",
+    html: "<p>El conductor indica que el cliente le pagó el monto del viaje exacto, y no por efectivo.</p><ol><li>Solicitar el número del viaje.</li><li>Solicitar la cantidad que realmente recibió.</li><li>Reportar por el canal de Validaciones llamadas en Slack (<strong>#validacionesllamadasliveops</strong>) para que el equipo valide y, de corresponder, haga los ajustes.</li></ol><p><strong>Mensaje para el conductor:</strong></p><pre>Entiendo estimado, hemos escalado tu caso al equipo encargado quien se encargará de validar y de corresponder hacer los ajustes correspondientes.</pre>"
+  },
+  {
+    group: "casos",
+    section: "Validaciones",
+    vertical: "Rides",
+    tag: "Caso",
     title: "Incidencias (ajustes de saldo a user/driver)",
     html: "<p>Cuando hay una diferencia de dinero que hay que corregir en la billetera del cliente o del driver, se registra en el <a href=\"https://docs.google.com/spreadsheets/d/18ZefV4gAixPM8MXaOsxD-aRozVl7DxG7DLWzxvZEjlE/edit?gid=2054200952#gid=2054200952\" target=\"_blank\"><strong>Registro de Incidencias Rides</strong></a>, con el ID del viaje, los datos de cliente y driver, la ciudad, el tipo de servicio, el detalle de la incidencia, el detalle del caso, y el monto a acreditar o debitar a cada uno.</p><p><strong>Motivos más comunes:</strong> cargo duplicado, driver finaliza el viaje sin el user, vuelto errado en efectivo, driver cancela luego de recibir el pago, user no corresponde al kilometraje, acreditación errada, deuda a user.</p><p><strong>Caso de vuelto errado:</strong> el cliente indica que va a pagar con un billete que requiere vuelto (ej. $10), pero después paga por pago móvil el monto exacto del viaje, o paga con otro billete distinto. Como el conductor completa el servicio según lo que el cliente indicó al inicio, el sistema le resta el supuesto vuelto al driver y se lo suma al cliente en su wallet, cuando en realidad no le correspondía. Por eso se bloquea preventivamente al cliente mientras se investiga el caso y se hacen las validaciones y ajustes correspondientes.</p>"
   },
