@@ -394,6 +394,14 @@ var sections = [
     section: "Validaciones",
     vertical: "Rides",
     tag: "Caso",
+    title: "Deuda de usuario (cliente no pagó el servicio)",
+    html: "<ol><li>Solicitar al conductor el ID del viaje.</li><li>Validar en la base de datos que el pago esté completado o en running, y que el método de pago sea directo al driver.</li><li>Solicitar al conductor sus datos de pago móvil, para reportarlo por el canal de llamadas y que contacten al usuario.</li></ol><p><strong>Mensaje para el conductor:</strong></p><pre>Estimado conductor, le informamos que hemos procedido a cargar la deuda pendiente al perfil del usuario en la plataforma. Por seguridad, su cuenta permanecerá restringida y no podrá solicitar nuevos servicios hasta que el monto sea cancelado. Una vez que el usuario realice el pago, el saldo se acreditará automáticamente en su billetera de la App. Estaremos al pendiente para apoyarle en lo posible.</pre>"
+  },
+  {
+    group: "casos",
+    section: "Validaciones",
+    vertical: "Rides",
+    tag: "Caso",
     title: "Driver bloqueado, no recibió el correo de feedback",
     html: "<p>Si un conductor se contacta indicando que está bloqueado y que no le han enviado el correo de feedback (donde se explica el motivo del bloqueo), nunca le des tú el motivo de bloqueo. Eso lo maneja <strong>Escuela</strong>, por correo.</p><p>Si te dice que no ha recibido ese correo, escala a Escuela con los datos del driver, solicitando por favor que revisen el caso.</p>"
   },
